@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class DatabaseOutput(tk.Frame):
+class Database_Output(tk.Frame):
     def __init__(self, master=None, data=None, fields=None):
         super().__init__(master)
         self.grid()
