@@ -25,7 +25,7 @@ class Database_Output(tk.Frame):
         # output each tuple as a row of labels
         for i, row in enumerate(data):
             for j, item in enumerate(row):
-                tk.Label(self, text=item, relief=tk.RIDGE, font='Helvetica 10').grid(row=i+2, column=j, sticky=tk.NSEW)
+                tk.Label(self, text=item, relief=tk.RIDGE, font='Helvetica 10', anchor="w").grid(row=i+2, column=j, sticky=tk.NSEW)
 
 def getFields(columns):
     fields = []
