@@ -12,10 +12,12 @@ class Application(tk.Frame):
     def create_widgets(self, button_data):
         for button_text, description_text, result, columns in button_data:
             # Create a button and description
-            button = tk.Button(self, text=button_text, command=self.button_clicked(button_text, result, columns))
-            button.pack(side="top", pady=10)
-            description = tk.Label(self, text=description_text)
-            description.pack(side="top", pady=5)
+            button_frame = tk.Frame(self)
+            button_frame.pack(side="top", pady=10, padx=5, anchor="w")
+            button = tk.Button(button_frame, text=button_text, command=self.button_clicked(button_text, result, columns))
+            button.pack(side="left")
+            description = tk.Label(button_frame, text=description_text)
+            description.pack(side="left", padx=10, anchor="w")
 
         # Create a quit button
         quit_button = tk.Button(self, text="Quit", fg="red", command=self.master.destroy)
