@@ -8,7 +8,3 @@ This program is run in python make sure you have **Python  3.9** or above to che
 The MySQL Connector driver is required for the project to work. To install use the command ```python -m pip install mysql-connector-python```
 
 ### Running
-
-
-
-
