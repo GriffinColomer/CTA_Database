@@ -1,2 +1,2 @@
-# CTA_Database
-Cs 425 project
+# CTA Database Project
+Completed project.
