@@ -609,3 +609,21 @@ WHERE o.last_name LIKE 'S%';
 SELECT *
 FROM train_station
 WHERE line_id = 1 AND ada = TRUE;
+
+#11 this gives you the tenure of each operator
+SELECT operator_id, first_name, last_name, gender,
+CASE WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 20 YEAR)
+THEN 'Less than 20 year'
+WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 25 YEAR)
+THEN '20-25 years' ELSE 'More than 25 years' END AS tenure
+FROM operator
+ORDER BY tenure;
+
+
+#12 gives a ranking of train lines with the most trains scheduled for it
+SELECT line_color, train_count, RANK() OVER (ORDER BY train_count DESC) AS count_rank
+FROM (
+SELECT t.line_color, COUNT(t.train_id) AS train_count
+FROM train t
+GROUP BY t.line_color
+) sub;
