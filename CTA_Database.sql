@@ -1,6 +1,5 @@
--- create schema 425deliverable3;
--- use 425deliverable3;
-
+create schema 425deliverable3;
+use 425deliverable3;
 CREATE TABLE operator (
     operator_id INT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -8,25 +7,20 @@ CREATE TABLE operator (
     gender VARCHAR(255),
     hire_date DATE
 );
-
 CREATE TABLE bus_schedule (
     bus_schedule_id INT PRIMARY KEY,
     route VARCHAR(5000) NOT NULL
 );
-
-
 CREATE TABLE train_schedule (
     train_schedule_id INT PRIMARY KEY,
     route VARCHAR(5000) NOT NULL
 );
-
 CREATE TABLE bus_stop (
     stop_id INT PRIMARY KEY,
     stop_name VARCHAR(255) NOT NULL,
     direction VARCHAR(255) NOT NULL,
     location VARCHAR(255)
 );
-
 CREATE TABLE line (
     line_id INT PRIMARY KEY,
     green BOOLEAN DEFAULT FALSE NOT NULL,
@@ -38,7 +32,6 @@ CREATE TABLE line (
     pink BOOLEAN DEFAULT FALSE NOT NULL,
     orange BOOLEAN DEFAULT FALSE NOT NULL
 );
-
 CREATE TABLE bus (
     bus_id INT PRIMARY KEY,
     stop_id INT NOT NULL,
@@ -48,9 +41,6 @@ CREATE TABLE bus (
     FOREIGN KEY (operator_id) REFERENCES operator(operator_id),
     FOREIGN KEY (bus_schedule_id) REFERENCES bus_schedule(bus_schedule_id)
 );
-
-
-
 CREATE TABLE train_station (
     station_id INT PRIMARY KEY,
     line_id INT NOT NULL,
@@ -59,7 +49,6 @@ CREATE TABLE train_station (
     location VARCHAR(255),
     FOREIGN KEY (line_id) REFERENCES line(line_id)
 );
-
 CREATE TABLE train (
     train_id INT PRIMARY KEY,
     line_color VARCHAR(255) NOT NULL,
@@ -70,17 +59,6 @@ CREATE TABLE train (
     FOREIGN KEY (operator_id) REFERENCES operator(operator_id),
     FOREIGN KEY (train_schedule_id) REFERENCES train_schedule(train_schedule_id)
 );
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO operator (operator_id, first_name, last_name, gender, hire_date)
 VALUES 
 (1, 'John', 'Doe', 'Male', '1995-12-31'),
@@ -133,10 +111,6 @@ VALUES
 (48, 'Benjamin', 'Lin', 'Male', '1997-05-21'),
 (49, 'Avery', 'Xu', 'Female', '1994-04-17'),
 (50, 'Christopher', 'Yu', 'Male', '1999-11-02');
-
-#---------------------------------------------------------------------------
-
-#created using real data
 INSERT INTO bus_stop(stop_id, stop_name, direction, location)
 VALUES
 (68, 'Jackson & Franklin', 'Eastbound', '(41.878051°, -87.635401°)'),
@@ -344,41 +318,36 @@ VALUES
 (2390, 'State & 26th Street', 'Southbound', 'Northwest Corner'),
 (2338, 'State & 27th Street', 'Northbound', 'Eastside of the Street'),
 (14483, '1100 S Columbus (Pedestrian Underpass)', 'Northbound', 'Eastside of the Street'),
-  (4872, '1100 S Columbus (Pedestrian Underpass)', 'Southbound', 'Westside of the Street'),
-  (17057, '1111 East 60th Street', 'Eastbound', 'Southside of the Street'),
-  (7137, '5000 S Lake Park', 'Northbound', 'Eastside of the Street'),
-  (7175, '5000 S Lake Park', 'Southbound', 'Westside of the Street'),
-  (1514, '5800 S Stony Island', 'Northbound', 'Eastside of the Street'),
-  (14458, '60th Street & Blackstone', 'Eastbound', 'Southside of the Street'),
-  (15431, '60th Street & Cottage Grove', 'Westbound', 'Northeast Corner'),
-  (15432, '60th Street & Cottage Grove', 'Eastbound', 'Southeast Corner'),
-  (14032, '60th Street & Ellis', 'Westbound', 'Northeast Corner'),
-  (14019, '60th Street & Ellis', 'Eastbound', 'Southeast Corner'),
-  (17902, '60th Street & Kenwood', 'Eastbound', 'Southwest Corner'),
-  (15428, '60th Street & Kimbark', 'Westbound', 'Northside of the Street'),
-  (14885, '60th Street & Stony Island', 'Eastbound', 'Southwest Corner'),
-  (17903, '60th Street & University', 'Westbound', 'Northwest Corner'),
-  (14020, '60th Street & University', 'Eastbound', 'Southeast Corner'),
-  (15429, '60th Street & Woodlawn', 'Westbound', 'Northeast Corner'),
-  (15433, '60th Street & Woodlawn', 'Eastbound', 'Southwest Corner'),
-  (18050, '915 E. 60th Street', 'Eastbound', 'Southside of the Street'),
-  (4883, 'Balbo & Columbus', 'Westbound', 'Northwest Corner'),
-  (4871, 'Balbo & Columbus', 'Eastbound', 'Southwest Corner'),
-  (4884, 'Balbo & Michigan', 'Westbound', 'Northeast Corner'),
-  (4870, 'Balbo & Michigan', 'Eastbound', 'Southeast Corner'),
-  (15482, 'Balbo & State', 'Westbound', 'Northeast Corner'),
-  (14645, 'Balbo & State', 'Eastbound', 'Southeast Corner'),
-  (2505, 'Cottage Grove & 52nd Street', 'Northbound', 'Southeast Corner'),
-  (2555, 'Cottage Grove & 52nd Street', 'Southbound', 'Westside of the Street'),
-  (2504, 'Cottage Grove & 53rd Street', 'Northbound', 'Southeast Corner'),
-  (2556, 'Cottage Grove & 53rd Street', 'Southbound', 'Westside of the Street'),
-  (2503, 'Cottage Grove & 54th Street', 'Northbound', 'Southeast Corner'),
-  (2557, 'Cottage Grove & 54th Street', 'Southbound', 'Westside of the Street');
-
-
-
-#--------------------------------------------------------------------------------------
-#implemented 35,54,29,2,43
+(4872, '1100 S Columbus (Pedestrian Underpass)', 'Southbound', 'Westside of the Street'),
+(17057, '1111 East 60th Street', 'Eastbound', 'Southside of the Street'),
+(7137, '5000 S Lake Park', 'Northbound', 'Eastside of the Street'),
+(7175, '5000 S Lake Park', 'Southbound', 'Westside of the Street'),
+(1514, '5800 S Stony Island', 'Northbound', 'Eastside of the Street'),
+(14458, '60th Street & Blackstone', 'Eastbound', 'Southside of the Street'),
+(15431, '60th Street & Cottage Grove', 'Westbound', 'Northeast Corner'),
+(15432, '60th Street & Cottage Grove', 'Eastbound', 'Southeast Corner'),
+(14032, '60th Street & Ellis', 'Westbound', 'Northeast Corner'),
+(14019, '60th Street & Ellis', 'Eastbound', 'Southeast Corner'),
+(17902, '60th Street & Kenwood', 'Eastbound', 'Southwest Corner'),
+(15428, '60th Street & Kimbark', 'Westbound', 'Northside of the Street'),
+(14885, '60th Street & Stony Island', 'Eastbound', 'Southwest Corner'),
+(17903, '60th Street & University', 'Westbound', 'Northwest Corner'),
+(14020, '60th Street & University', 'Eastbound', 'Southeast Corner'),
+(15429, '60th Street & Woodlawn', 'Westbound', 'Northeast Corner'),
+(15433, '60th Street & Woodlawn', 'Eastbound', 'Southwest Corner'),
+(18050, '915 E. 60th Street', 'Eastbound', 'Southside of the Street'),
+(4883, 'Balbo & Columbus', 'Westbound', 'Northwest Corner'),
+(4871, 'Balbo & Columbus', 'Eastbound', 'Southwest Corner'),
+(4884, 'Balbo & Michigan', 'Westbound', 'Northeast Corner'),
+(4870, 'Balbo & Michigan', 'Eastbound', 'Southeast Corner'),
+(15482, 'Balbo & State', 'Westbound', 'Northeast Corner'),
+(14645, 'Balbo & State', 'Eastbound', 'Southeast Corner'),
+(2505, 'Cottage Grove & 52nd Street', 'Northbound', 'Southeast Corner'),
+(2555, 'Cottage Grove & 52nd Street', 'Southbound', 'Westside of the Street'),
+(2504, 'Cottage Grove & 53rd Street', 'Northbound', 'Southeast Corner'),
+(2556, 'Cottage Grove & 53rd Street', 'Southbound', 'Westside of the Street'),
+(2503, 'Cottage Grove & 54th Street', 'Northbound', 'Southeast Corner'),
+(2557, 'Cottage Grove & 54th Street', 'Southbound', 'Westside of the Street');
 INSERT INTO bus_schedule(bus_schedule_id, route) 
 VALUES
 (35,'7650,7668,7428,17694,7430,7447,7426,7451,17769,7443,17696,17770,7442,17690,7441,17691,17693,7429,7448,12950,7445,7425,7452,7431,7446,17768,17695,17961,3133,3065,3132,3066,7627,3131,3067,7647,7671,7658,7416,7461,7652,18204,7629,7657,7661,7636,7681,7631,7686,18206,7674,15315,15520,7649,7669,2528,2533,7687,15179,7465,7645,7673,7417,7460,15316,7684,7646,18205,7641,7677,15180,7464,7653,7665,7648,15234,2534,7418,7459,7640,7678,7635,14953,7643,7675,7642,15413,7419,7458,15181,7415,7462,7656,7662,15936,7663,4432,14134,15436,15434,15435,15182,7786,7789,7788,15183,7809,7808,7787,4433,4176,4264,4266,4265,6301,10408,10339,10407,18367,10406,10341,17698,17692,7628,17448,2527,4486,1610,7689,7688,7638,7680'),
@@ -406,9 +375,6 @@ VALUES
 (1,'1564,1606,7684,12713,17046,1108,4732,77,80,1563,1562,16119,1560,15314,67,14461,70,69,68,71,72,1581,1590,1579,1592,18318,1593,14760,1595,1575,1596,1573,1598,1570,16014,15313,17243,1568,1602,1567,1603,1566,1604,1565,1605,1607,1608,1609,1610,1583,1588,1582,1589,1584,1587,15312,1599,1574,1597,1586,14485,1580,1591,75,73'),
 (3,'15739,7494,7491,7493,2180,2195,2197,2201,7686,2166,2203,2150,2219,2980,2818,2981,2817,17754,18630,2190,18353,582,597,15282,593,584,595,17397,2193,2181,2194,2179,2196,2178,2198,2171,2170,2199,2168,2169,17300,2167,2202,2165,2204,2164,2205,2161,2208,2160,2209,2159,2210,2158,2211,2157,2212,2156,2213,2155,2214,2154,2215,2153,2216,2152,2217,2151,2218,2149,2220,2148,2221,2145,2224,15486,2225,2143,2226,2142,2227,2228,2141,2140,2229,2139,2230,2231,2138,15537,2137,2232,2136,2233,2135,2234,2131,2238,2130,2239,2129,2240,2128,2241,17381,2242,2126,2243,2125,2244,2124,2245,2123,2246,2122,2247,2121,17363,2120,2249,2119,2250,2118,2251,2117,2252,2116,2253,2115,2254,2114,2255,2113,2256,2112,2257,18432,2258,2110,2259,2109,2260,2107,2262,2106,2263,16001,2132,2237,2108,2261,2147,2222,2146,2223,2134,2235,2133,2236,2162,2207,2163,2206,14559,2192,1581,1590,1579,1592,18318,1593,14760,1595,1575,1596,1573,1598,1568,1567,1583,1588,2816,7529,7530,7531,1582,1589,1584,1587,15312,1126,1574,1597,1121,1100,1123,1586,1122,1103,1125,14485,1102,1110,76,1105,2188,15241,18396,1101,1124,1119,1580,1591,1104,1120,14488,73,1106,7732,15999'),
 (37,'14210,6351,572,6363,2042,4619,15020,14426,4623,1348,6597,14461,1403,1400,1402,1456,1401,6611,6715,6714,15437,6712,14762,6608,6718,4627,6713,6610,6716,4626,18402,6609,6728,6723,17140,6601,6725,6721,6605,6600,6726,17139,6724,6719,6607,6599,6727,84,15864,17712,6730,4635,5020,5021,6613,4636,4630,4633,4628,4634,6614,4632');
-
--- -----------------------------------------------------------------------------------------------
-
 INSERT INTO train_schedule(train_schedule_id, route)
 VALUES
 (1, 'Howard, Jarvis, Morse, Loyola, Granville, Thorndale, Bryn Mawr, Argyle, Wilson, Sheridan, Addison, Belmont, Fullerton, North/Clybourn, Clark/Division, Chicago, Grand, Lake, Monroe, Jackson, Harrison, Roosevelt, Cermak-Chinatown, Sox-35th, 47th, Garfield, 63rd, 69th, 79th, 87th, 95th/Dan Ryan'),
@@ -429,8 +395,6 @@ VALUES
 (16,'Washington/Wells, Quincy, LaSalle/Van Buren, Harold Washington Library-State/Van Buren, Adams/Wabash, Washington/Wabash, State/Lake, Clark/Lake, Clinton, Racine, Morgan, Ashland, Polk, 18th, Damen, Western, California, Kedzie, Central Park, Pulaski, Kostner, Cicero, 54th/Cermak'),
 (17,'Kimball, Kedzie, Francisco, Rockwell, Western, Damen, Montrose, Irving Park, Addison, Paulina, Southport, Belmont, Wellington, Diversey, Fullerton, Armitage, Sedgwick, Chicago, Merchandise Mart, Washington/Wells, Quincy, LaSalle/Van Buren, Harold Washington Library-State/Van Buren, Adams/Wabash, Madison/Wabash, Randolph/Wabash, State/Lake, Clark/Lake'),
 (18,'Clark/Lake, State/Lake, Randolph/Wabash, Madison/Wabash, Adams/Wabash, Harold Washington Library-State/Van Buren, LaSalle/Van Buren, Quincy, Washington/Wells, Merchandise Mart, Chicago, Sedgwick, Armitage, Fullerton, Diversey, Wellington, Belmont, Southport, Paulina, Addison, Irving Park, Montrose, Damen, Western, Rockwell, Francisco, Kedzie, Kimball');
--- -------------------------------------------------
-
 INSERT INTO line (line_id, green, red, blue, brown, purple, yellow, pink, orange)
 VALUES
 (1, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
@@ -456,11 +420,8 @@ VALUES
 (21, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE),
 (22, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE),
 (23, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE),
-(24, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE), #exist for debug purposes
-(25, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE); #exist for debug purposes
-
--- ---------------------------------------------------------------------------------------
-
+(24, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE), 
+(25, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE); 
 INSERT INTO train_station (station_id, line_id, station_name, ada, location)
 VALUES
 (40420, 7, 'Cicero (Pink Line)', true, '(41.85182, -87.745336)'),
@@ -492,8 +453,6 @@ VALUES
 (40660, 9, 'Armitage (Brown & Purple lines)', true, '(41.918217, -87.652644)'),
 (41400, 22, 'Roosevelt (Red, Orange & Green lines)', true, '(41.867368, -87.627402)'),
 (41320, 20, 'Belmont (Red, Brown & Purple lines)', true, '(41.939751, -87.65338)');
-
--- -------------------------------------------------------------------------------
 insert into bus(bus_id, stop_id, operator_id, bus_schedule_id)
 values
 (1, 8054, 1, 43),
@@ -521,10 +480,6 @@ values
 (23, 7997, 23, 43),
 (24, 7994, 24, 43),
 (25, 8002, 25, 43);
-
--- ---------------------------------------
-
-
 INSERT INTO train(train_id, line_color, station_id, operator_id, train_schedule_id)
 VALUES
 (1, 'red', 41300, 26, 1),
@@ -552,78 +507,3 @@ VALUES
 (22, 'brown', 40360, 47, 17),
 (11, 'pink', 40780, 36, 16),
 (20, 'pink', 40830, 45, 15);
-
--- 
-
-#SQL STATEMENTS
-
-#1 finds train stations that are not ADA complient
-SELECT *
-FROM train_station
-WHERE train_station.ada = FALSE;
-
-#2 gives the operators information displayed as last, first, gender
-SELECT last_name, first_name, gender
-FROM operator;
-
-#3 gives operators that operate trains
-SELECT DISTINCT operator.*
-FROM operator
-INNER JOIN train ON operator.operator_id = train.operator_id;
-
-#4 this finds the number of buses that stop at each bus stop
-SELECT stop_name, COUNT(*) AS num_buses
-FROM bus_stop
-JOIN bus ON bus.stop_id = bus_stop.stop_id
-GROUP BY stop_name;
-
-
-#5 gives operators that have been working since before 2012
-SELECT *
-FROM operator
-WHERE hire_date < '1997-01-01';
-
-#6 gives bus number and its route
-SELECT bus.bus_id, bus_schedule.route
-FROM bus
-INNER JOIN bus_schedule ON bus.bus_schedule_id = bus_schedule.bus_schedule_id;
-
-#7 gives trains and their routes
-SELECT train.train_id, train_schedule.route
-FROM train
-INNER JOIN train_schedule ON train.train_schedule_id = train_schedule.train_schedule_id;
-
-#8 gives all the stations that service the red line
-SELECT *
-FROM train_station ts
-INNER JOIN line l ON ts.line_id = l.line_id
-WHERE l.red = TRUE;
-
-#9 this finds all buses operated by operators with a last name starting with "S"
-SELECT b.*, o.first_name, o.last_name
-FROM bus b
-JOIN operator o ON b.operator_id = o.operator_id
-WHERE o.last_name LIKE 'S%';
-
-#10 this finds all train stations on the green line that are ADA accessible
-SELECT *
-FROM train_station
-WHERE line_id = 1 AND ada = TRUE;
-
-#11 this gives you the tenure of each operator
-SELECT operator_id, first_name, last_name, gender,
-CASE WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 20 YEAR)
-THEN 'Less than 20 year'
-WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 25 YEAR)
-THEN '20-25 years' ELSE 'More than 25 years' END AS tenure
-FROM operator
-ORDER BY tenure;
-
-
-#12 gives a ranking of train lines with the most trains scheduled for it
-SELECT line_color, train_count, RANK() OVER (ORDER BY train_count DESC) AS count_rank
-FROM (
-SELECT t.line_color, COUNT(t.train_id) AS train_count
-FROM train t
-GROUP BY t.line_color
-) sub;

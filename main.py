@@ -1,20 +1,9 @@
 import mysql.connector
 import application
+import login
 
 if __name__ == "__main__":
-  # sets up the window for the output
-  root = application.tk.Tk()
-
-  # connects to the database
-  mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  user="root",
-  password="passworddavid1",
-  database="425deliverable3"
-  )
-  mycursor = mydb.cursor()
-
-  # sql commands to execute
+   # sql commands to execute
   COMMANDS = [
     "SELECT * FROM train_station WHERE train_station.ada = FALSE",
     "SELECT last_name, first_name, gender FROM operator",
@@ -28,7 +17,6 @@ if __name__ == "__main__":
     "SELECT * FROM train_station WHERE line_id = 1 AND ada = TRUE",
     "SELECT operator_id, first_name, last_name, gender, CASE WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 20 YEAR) THEN 'Less than 20 year' WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 25 YEAR) THEN '20-25 years' ELSE 'More than 25 years' END AS tenure FROM operator ORDER BY tenure",
     "SELECT line_color, train_count, RANK() OVER (ORDER BY train_count DESC) AS count_rank FROM (SELECT t.line_color, COUNT(t.train_id) AS train_count FROM train t GROUP BY t.line_color) sub"
-
   ]
   # text that will go in the buttons and describe the command
   BUTTON_TEXT = [
@@ -46,7 +34,44 @@ if __name__ == "__main__":
     ("Button 12", "gives a ranking of train lines with the most trains scheduled for it")
   ]
 
-  # parses through te lists containg commands and button descriptions to give to the application
+  # sets up the login for the application
+  login_page = login.tk.Tk()
+
+  #acquires Login information for the database
+  login_information = login.LoginScreen(login_page)
+  login_information.mainloop()
+
+  # Connects your local database if the schema exists already
+  try:
+    mydb = mysql.connector.connect(
+    host="127.0.0.1",
+    user=login_information.get_username(),
+    password=login_information.get_password(),
+    database='425deliverable3'
+    )
+    mycursor = mydb.cursor()
+
+  # Connects to you local MySQL server and creates the database
+  except:
+    mydb = mysql.connector.connect(
+    host="127.0.0.1",
+    user=login_information.get_username(),
+    password=login_information.get_password(),
+    )
+    mycursor = mydb.cursor()
+
+    with open('CTA_Database.sql', 'r') as file:
+      command = ""
+      for line in file:
+        if ';' in line:
+          command += line.replace(';', '').strip()
+          mycursor.execute(command)
+          command = ""
+        else:
+          command += line.strip() + " "
+      mydb.commit()
+
+  # parses through the lists containing commands and button descriptions to give to the application
   button_data = []
   for button_text, command in zip(BUTTON_TEXT, COMMANDS):
     mycursor.execute(command)
@@ -55,6 +80,7 @@ if __name__ == "__main__":
     button_data.append((button_text[0], button_text[1], result, columns))
 
   # Runs the Gui
-  app = application.Application(master= root, button_data= button_data)
+  button_sheet = application.tk.Tk()
+  app = application.Application(master= button_sheet, button_data= button_data)
   app.mainloop()
   
