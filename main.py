@@ -25,7 +25,10 @@ if __name__ == "__main__":
     "SELECT train.train_id, train_schedule.route FROM train INNER JOIN train_schedule ON train.train_schedule_id = train_schedule.train_schedule_id",
     "SELECT * FROM train_station ts INNER JOIN line l ON ts.line_id = l.line_id WHERE l.red = TRUE",
     "SELECT b.*, o.first_name, o.last_name FROM bus b JOIN operator o ON b.operator_id = o.operator_id WHERE o.last_name LIKE 'S%'",
-    "SELECT * FROM train_station WHERE line_id = 1 AND ada = TRUE"
+    "SELECT * FROM train_station WHERE line_id = 1 AND ada = TRUE",
+    "SELECT operator_id, first_name, last_name, gender, CASE WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 20 YEAR) THEN 'Less than 20 year' WHEN hire_date > DATE_SUB(CURRENT_DATE(), INTERVAL 25 YEAR) THEN '20-25 years' ELSE 'More than 25 years' END AS tenure FROM operator ORDER BY tenure",
+    "SELECT line_color, train_count, RANK() OVER (ORDER BY train_count DESC) AS count_rank FROM (SELECT t.line_color, COUNT(t.train_id) AS train_count FROM train t GROUP BY t.line_color) sub"
+
   ]
   # text that will go in the buttons and describe the command
   BUTTON_TEXT = [
@@ -38,7 +41,9 @@ if __name__ == "__main__":
     ("Button 7", "gives trains and their routes"),
     ("Button 8", "gives all the stations that service the red line"),
     ("Button 9", "finds all buses operated by operators with a last name starting with 'S'"),
-    ("Button 10", "finds all train stations on the green line that are ADA accessible")
+    ("Button 10", "finds all train stations on the green line that are ADA accessible"),
+    ("Button 11", "gives you the tenure of each operator"),
+    ("Button 12", "gives a ranking of train lines with the most trains scheduled for it")
   ]
 
   # parses through te lists containg commands and button descriptions to give to the application
