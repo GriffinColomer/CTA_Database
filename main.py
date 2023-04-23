@@ -29,7 +29,7 @@ if __name__ == "__main__":
   ]
   # text that will go in the buttons and describe the command
   BUTTON_TEXT = [
-    ("Button 1", "finds train stations that are ADA complient"),
+    ("Button 1", "finds train stations that are not ADA complient"),
     ("Button 2", "gives the operators information displayed as last, first, gender"),
     ("Button 3", "gives operators that operate trains"),
     ("Button 4", "finds the number of buses that stop at each bus stop"),
