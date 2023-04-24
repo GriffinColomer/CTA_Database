@@ -47,7 +47,7 @@ if __name__ == "__main__":
     host="127.0.0.1",
     user=login_information.get_username(),
     password=login_information.get_password(),
-    database='425deliverable3'
+    database='CTADatabase'
     )
     mycursor = mydb.cursor()
 
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     )
     mycursor = mydb.cursor()
 
-    with open('CTA_Database.sql', 'r') as file:
+    with open('.\database_app\CTA_Database.sql', 'r') as file:
       command = ""
       for line in file:
         if ';' in line:

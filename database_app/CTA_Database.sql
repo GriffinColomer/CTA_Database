@@ -1,5 +1,5 @@
-create schema 425deliverable3;
-use 425deliverable3;
+create schema CTADatabase;
+use CTADatabase;
 CREATE TABLE operator (
     operator_id INT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
